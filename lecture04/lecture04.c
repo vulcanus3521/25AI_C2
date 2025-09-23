@@ -1,39 +1,35 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
+#include <Windows.h>
 
-#define NUM 10
+#define NUM 100
 
 int main()
 {
-    int i, j, data;
+	int i, j, data = 0;
 
 	int a[NUM];
 	int b[NUM];
 
-	for (i = 0;i < NUM;i++) 
+	for (i = 0; i < NUM; i++)
 	{
 		a[i] = (rand() % NUM);
-		for (j = 0;j < i;j++) 
+		for (j = 0; j < i; j++)
 		{
-			if (a[i] == a[j]) 
+			if (a[i] == a[j])
 			{
 				i--;
 			}
 		}
 	}
-	
-	printf("a :");
-	for (i = 0;i < NUM;i++)
-	{
-		printf("%d ", a[i]);
-		b[i] = a[i];
-	}
+
 	/*
-	for (i = 0; i < NUM - 1; i++) 
+	for (i = 0; i < NUM - 1; i++)
 	{
 		for (j = i + 1; j < NUM; j++)
 		{
-			if (b[i] > b[j]) {
+			if (b[i] > b[j])
+			{
 				data = b[i];
 				b[i] = b[j];
 				b[j] = data;
@@ -41,10 +37,26 @@ int main()
 		}
 	}
 	*/
-	printf("\nb :");
-	for (i = 0;i < NUM;i++)
+
+	for (int i = 0; i < NUM; i++)
 	{
-		printf("%d ", b[i]);
+		data = -1;
+		for (int j = 0; j < NUM; j++)
+		{
+			if (a[j] == i)
+			{
+				data = j;
+				break;
+			}
+		}
+		b[i] = data;
+	}
+
+	printf("i   \ta\tb");
+	for (i = 0; i < NUM; i++)
+	{
+		//Sleep(5);
+		printf("\n%d   \t%d\t%d", i, a[i], b[i]);
 	}
 
 	return 0;
