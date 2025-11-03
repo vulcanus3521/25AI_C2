@@ -70,12 +70,11 @@ static int write_players_to_csv_interactive(const char* csv_path)
     int n = 1;
 
     for (int i = 0; i < n; ++i) {
-        printf(FG_YELLOW "\n[%d/%d] 선수 정보 입력\n" CLR_RESET, i + 1, n);
 
         // 이름 입력: 공백 없는 문자열 기준(공백 처리하려면 fgets로 변경 권장)
         // scanf_s로 문자열 입력 시에는 반드시 버퍼 크기를 함께 전달해야 함.
         // 예: scanf_s("%63s", players[i].name, (rsize_t)sizeof(players[i].name));
-        printf("  이름(공백 없이): ");
+        printf("\n  이름(공백 없이): ");
         if (scanf("%63s", students[i].name, (rsize_t)sizeof(students[i].name)) != 1) {
             printf(FG_RED "  입력 오류(이름)\n" CLR_RESET);
             flush_stdin_line();
@@ -205,13 +204,6 @@ static int read_players_from_csv_and_print(const char* csv_path)
     }
     printf(BOLD FG_WHITE "---------------------------------------------------------\n" CLR_RESET);
 
-    // getch: 에코 없이 즉시 키 입력 하나를 읽는다.
-    // - scanf/gets/fgets와 달리 콘솔에 글자가 찍히지 않는다.
-    // - "아무 키나 누르면 계속" UX에 적합.
-    printf(FG_GREEN "\n출력을 모두 완료했습니다. " CLR_RESET);
-    printf("아무 키나 누르면 종료합니다...");
-    (void)_getch();
-
     return count;
 }
 
@@ -242,6 +234,6 @@ int main(void)
     }
 
     // 마무리
-    printf("\n" FG_CYAN "실습 종료. 수고했다. (파일: %s)\n" CLR_RESET, CSV_PATH);
+    printf("\n" FG_CYAN "실습 종료. 수고했다. (파일: %s)\n" CLR_RESET, TXT_PATH);
     return 0;
 }
